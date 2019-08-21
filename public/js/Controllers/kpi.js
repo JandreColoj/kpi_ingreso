@@ -1,5 +1,50 @@
 app.controller('KPICtrl',function($scope, $http, $window, blockUI){ 
    
+
+   $scope.editarCliente = function(cliente){
+      var nombre  = angular.element(document.getElementById('td_'+cliente.nombre));
+      var telefono  = angular.element(document.getElementById('td_'+cliente.telefono));
+      var apellido  = angular.element(document.getElementById('td_'+cliente.apellido));
+      //add item
+      cliente.nombre  = nombre[0]['textContent'];
+      cliente.telefono  = telefono[0]['textContent'];
+      cliente.apellido  = apellido[0]['textContent'];
+
+      $http.post('api/cliente/editar', cliente).then(function (response) {
+         $scope.chart_cliente_pie(); 
+      });
+   }
+
+   $scope.eliminarCliente = function(cliente){
+
+      $http.post('api/cliente/eliminar', cliente).then(function (response) {
+         $scope.chart_cliente_pie(); 
+      });
+   }
+
+   $scope.editarProducto = function(producto){
+      var nombre       = angular.element(document.getElementById('td_'+producto.nombre));
+      var descripcion  = angular.element(document.getElementById('td_'+producto.descripcion));
+      var precio       = angular.element(document.getElementById('td_'+producto.precio));
+      var existencia   = angular.element(document.getElementById('td_'+producto.existencia));
+      //add item
+      producto.nombre      = nombre[0]['textContent'];
+      producto.descripcion = descripcion[0]['textContent'];
+      producto.precio      = precio[0]['textContent'];
+      producto.existencia  = existencia[0]['textContent'];
+
+      $http.post('api/producto/editar', producto).then(function (response) {
+         $scope.chart_productos(); 
+      });
+   }
+
+   $scope.eliminarProducto = function(producto){
+      $http.post('api/producto/eliminar', producto).then(function (response) {
+         $scope.chart_productos(); 
+      });
+   }
+
+   
    $scope.seleccionar = function(id){
       
       for (i=0;i<document.f1.elements.length;i++){ 
@@ -118,7 +163,7 @@ app.controller('KPICtrl',function($scope, $http, $window, blockUI){
    
          $scope.productos.forEach(element => {
             labelProductos.push(element.nombre);   
-            dataProductos.push(element.stock);  
+            dataProductos.push(element.existencia);  
          });
    
          new Chart(document.getElementById("bar-chart-productos"), {

@@ -27,16 +27,27 @@
             <i class="material-icons" role="presentation">dashboard</i>
             Dashboard
         </a>
-        <a class="mdl-navigation__link" href={{ url('kpi') }}>
-            <i class="material-icons">multiline_chart</i>
-            KPI
+        <a class="mdl-navigation__link" href={{ url('clientes') }}>
+            <i class="material-icons">person_add</i>
+            Nuevo cliente
         </a>
+        <a class="mdl-navigation__link" href={{ url('productos') }}>
+            <i class="material-icons">card_travel</i>
+            Nuevo Producto
+        </a>
+        <a class="mdl-navigation__link" href={{ url('venta') }}>
+            <i class="material-icons">add_shopping_cart</i>
+            Registrar Venta
+        </a>
+        
+        <div class="mdl-layout-spacer"></div>
+
         <a class="mdl-navigation__link" href={{ url('registrar')}}>
             <i class="material-icons" role="presentation">person</i>
             Nuevo Usuario
         </a>
         <a class="mdl-navigation__link" href={{ url('usuarios') }}>
-            <i class="material-icons" role="presentation">person</i>
+            <i class="material-icons" role="presentation">assignment</i>
             Listado de usuario
         </a>
 

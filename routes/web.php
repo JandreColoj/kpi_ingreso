@@ -32,12 +32,20 @@ Route::get('home', 'HomeController@index');
 
 Route::group(['middleware' => ['auth']], function(){
 
-    Route::get('/kpi', function () {
-        return view('kpi');
+    Route::get('/clientes', function () {
+        return view('clientes');
+    });    
+
+    Route::get('/productos', function () {
+        return view('productos');
     });    
 
     Route::get('/usuarios', function () {
         return view('usuarios');
+    });
+
+    Route::get('/venta', function () {
+        return view('venta');
     });
 
     Route::group(['prefix' => 'api/'], function(){
@@ -46,7 +54,24 @@ Route::group(['middleware' => ['auth']], function(){
        Route::post('getVentasDia', 'KpiController@getVentasDia'); 
        Route::post('getVentasMes', 'KpiController@getVentasMes');  
        Route::post('getProductosModa', 'KpiController@getProductosModa');  
-       Route::post('getUsuarios', 'UsuariosController@getUsuarios');  
+       Route::post('getUsuarios', 'UsuariosController@getUsuarios'); 
+       
+        Route::group(['prefix' => 'cliente/'], function(){
+            Route::post('create', 'GeneralController@createCliente');
+            Route::post('editar', 'GeneralController@editarCliente'); 
+            Route::post('eliminar', 'GeneralController@eliminarCliente'); 
+        });
+       
+        Route::group(['prefix' => 'producto/'], function(){
+            Route::post('create', 'GeneralController@createProducto');
+            Route::post('editar', 'GeneralController@editarProducto');
+            Route::post('eliminar', 'GeneralController@eliminarProducto');
+        });
+       
+        Route::group(['prefix' => 'venta/'], function(){
+            Route::post('register', 'GeneralController@registerVenta');
+        });
+
     });
  
  });

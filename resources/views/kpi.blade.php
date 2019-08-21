@@ -14,7 +14,7 @@
          <!-- primera linea  -->
         <div class="row p-raw">
             <div class="col-md-4 trending">
-                <div class="mdl-card p-s">
+                <div class="p-s">
                     <form name="f1"> 
                         <ul>
                             <li>
@@ -24,27 +24,6 @@
                                 <h4>Mysql</h4>
                                 <input id="Mysql" type="checkbox" ng-click="seleccionar('Mysql')" checked/>
                                 <label for="Mysql" ><i class="fa fa-check"></i></label>
-                            </li>
-                            <li>
-                                <div class="circle"><img src= "{{asset('images/postgres.jpeg')}}"/>
-                                </div>
-                                <h4>Postgres</h4>
-                                <input id="Postgres" type="checkbox" ng-click="seleccionar('Postgres')"/>
-                                <label for="Postgres"><i class="fa fa-check" ></i></label>
-                            </li>
-                            <li>
-                                <div class="circle"><img src= "{{asset('images/sqlserver.png')}}"/>
-                                </div>
-                                <h4>SQLServer</h4>
-                                <input id="SQLServer" type="checkbox" ng-click="seleccionar('SQLServer')"/>
-                                <label for="SQLServer"><i class="fa fa-check"></i></label>
-                            </li>
-                            <li >
-                                <div class="circle"><img src= "{{asset('images/oracle.png')}}"/>
-                                </div>
-                                <h4>Oracle</h4>
-                                <input id="Oracle" type="checkbox" ng-click="seleccionar('Oracle')"/>
-                                <label for="Oracle"><i class="fa fa-check"></i></label>
                             </li>
                         </ul>
                     </form> 
@@ -107,16 +86,27 @@
                             <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
                             <th scope="col">Telefono</th>
                             <th scope="col">Tipo de Cliente</th>
+                            <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat = 'cliente in clientes'>
                                 <th scope="row">@{{ $index + 1 }}</th>
-                                <td>@{{cliente.nombre}} @{{cliente.apellido}}</td>
-                                <td>@{{cliente.telefono}}</td>
+                                <td contenteditable="true" id="td_@{{cliente.nombre}}"> @{{cliente.nombre}}</td>
+                                <td contenteditable="true" id="td_@{{cliente.apellido}}">@{{cliente.apellido}}</td>
+                                <td contenteditable="true" id="td_@{{cliente.telefono}}">@{{cliente.telefono}}</td>
                                 <td>@{{cliente.tipoCliente}}</td>
+                                <td>
+                                    <a class="mdl-navigation__link" href="#" ng-click="editarCliente(cliente)"> 
+                                        <i class="material-icons">create</i> 
+                                    </a>
+                                    <a class="mdl-navigation__link" href="#" ng-click="eliminarCliente(cliente)">
+                                        <i class="material-icons">delete_sweep</i> 
+                                    </a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -148,15 +138,24 @@
                             <th scope="col">Descripcion</th>
                             <th scope="col">Precio</th>
                             <th scope="col">Existencia</th>
+                            <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat = 'producto in productos'>
                                 <th scope="row">@{{ $index + 1 }}</th>
-                                <td>@{{producto.nombre}}</td>
-                                <td>@{{producto.descripcion}}</td>
-                                <td>@{{producto.precio}}</td>
-                                <td>@{{producto.stock}}</td>
+                                <td contenteditable="true" id="td_@{{producto.nombre}}">@{{producto.nombre}}</td>
+                                <td contenteditable="true" id="td_@{{producto.descripcion}}">@{{producto.descripcion | limitTo:15 }}. . .</td>
+                                <td contenteditable="true" id="td_@{{producto.precio}}">@{{producto.precio}}</td>
+                                <td contenteditable="true" id="td_@{{producto.existencia}}">@{{producto.existencia}}</td>
+                                <td>
+                                    <a class="mdl-navigation__link" href="#" ng-click="editarProducto(producto)"> 
+                                        <i class="material-icons">create</i> 
+                                    </a>
+                                    <a class="mdl-navigation__link" href="#" ng-click="eliminarProducto(producto)">
+                                        <i class="material-icons">delete_sweep</i> 
+                                    </a>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

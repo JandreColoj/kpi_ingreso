@@ -152,3 +152,25 @@
       font-weight: 100;
       font-size: 12px;
   }
+
+  .mdl-card__titl{
+    align-items: center;
+    color: #00BCD4;
+    display: block;
+    display: flex;
+    justify-content: stretch;
+    line-height: normal;
+    padding: 10px;
+    perspective-origin: 165px 56px;
+    transform-origin: 165px 56px;
+    box-sizing: border-box;
+  }
+
+
+  .panel{
+    background: rgba(255, 255, 255) !important;
+  }
+
+  .pd_top{
+    margin-top: 25px !important;
+  }
